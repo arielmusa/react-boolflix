@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import axios from "axios";
 
 const apiUrl = import.meta.env.VITE_API_HOST;
@@ -15,6 +15,9 @@ function SearchProvider({ children }) {
     axios
       .get(`${apiUrl}/search/movie?api_key=${apiKey}&query=${query}`)
       .then((res) => setMovies(res.data.results));
+    axios
+      .get(`${apiUrl}/search/tv?api_key=${apiKey}&query=${query}`)
+      .then((res) => setSeries(res.data.results));
   };
 
   const searchData = {
